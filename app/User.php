@@ -34,14 +34,18 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function licenses(){
 		return $this->hasMany("App\user_cars");
 	}
-
+/*
+    public function friends(){
+        return $this->belongsToMany('App\User','friends','user_id','friend_id');
+    }
+*/
     public function friendshipsSent(){
         return $this->belongsToMany('App\User','friends','user_id','friend_id');
     }
 
     public function friendshipsReceived(){
        // return $this->belongsToMany('App\User','friends','friend_id','user_id');
-        return $this->belongsToMany('App\User','friends','user_id','friend_id');
+        return $this->belongsToMany('App\User','friends','friend_id','user_id');
     }
 
 }

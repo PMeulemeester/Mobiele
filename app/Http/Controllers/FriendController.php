@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class FriendController extends Controller {
 
@@ -16,21 +17,31 @@ class FriendController extends Controller {
     /**
      * lijst van gebruikers die jij toevoegde, maar die jou nog niet hebben toegevoegd
      */
-    public function friendRequestsSent($user_id){
-        return User::find($user_id)->friendshipsSent;
+    public function friendRequestsSent(){
+        $user_id = Auth::id();
+        $sent =  User::find($user_id)->friendshipsSent;
+        $received =  User::find($user_id)->friendshipsReceived;
+
+
+        return $sent->except($received->modelKeys());
     }
 
     /**
      * lijst van vrienden die vriendschap nog moeten bevestigen
      */
-    public function friendRequestsReceived($user_id){
-        return User::find($user_id)->friendshipsReceived;
+    public function friendRequestsReceived(){
+        $user_id = Auth::id();
+        $received =  User::find($user_id)->friendshipsReceived;
+        $sent =  User::find($user_id)->friendshipsSent;
+
+        return $received->except($sent->modelKeys());
     }
 
     /**
      * lijst van vrienden: jij hebt hun toegevoegd en zij jou
      */
-    public function friends($user_id){
+    public function friends(){
+        $user_id = Auth::id();
         $to = User::find($user_id)->friendshipsSent;
         $from = User::find($user_id)->friendshipsReceived;
         return $to->intersect($from);
@@ -42,9 +53,10 @@ class FriendController extends Controller {
      * @param $user_id
      * @param $friend_id
      */
-    public function addFriend($user_id,$friend_id){
+    public function addFriend($friend_id){
+        $user_id = Auth::id();
         $user = User::find($user_id);
-        $user->friendshipsReceived()->attach($friend_id);
+        $user->friendshipsSent()->attach($friend_id);
     }
 
     /**
@@ -53,9 +65,10 @@ class FriendController extends Controller {
      * @param $user_id
      * @param $friend_id
      */
-    public function deleteFriend($user_id,$friend_id){
+    public function deleteFriend($friend_id){
+        $user_id = Auth::id();
         $user = User::find($user_id);
-        $user->friendshipsReceived()->detach($friend_id);
+        $user->friendshipsSent()->detach($friend_id);
     }
 
 }
