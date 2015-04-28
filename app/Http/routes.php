@@ -19,3 +19,8 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+Route::group(array('middleware'=>'auth'),function() {
+	Route::get('getLicensePlates','HomeController@getLicPlates');
+	Route::post('bookSpot','HomeController@bookSpot');
+	Route::get('bookings','HomeController@bookings');
+});

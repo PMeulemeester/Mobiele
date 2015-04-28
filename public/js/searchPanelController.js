@@ -22,8 +22,18 @@ app.controller('searchPanelController',['$scope','$window','$http',function($sco
         $scope.resparking=null;
     }
     $scope.reserveparking=function(parking){
+        $http.get('../public/getLicensePlates').success(function(response){
+            $scope.licenses=response;
+        });
         $scope.currentparking=null;
         $scope.resparking=parking;
+    }
+    $scope.bookspot=function(){
+        var booklicenseid = $("#booklicenseid").val();
+        var bookdate = $('#bookdate').val();
+        $http.post('../public/bookSpot',{parking:$scope.resparking,booklicenseid:booklicenseid,bookdate:bookdate}).success(function(){
+            //alert('succes');
+        });
     }
     $scope.updateparkings=function(){
         $http.get('http://datatank.gent.be/Mobiliteitsbedrijf/Parkings11.json').success(function(response){

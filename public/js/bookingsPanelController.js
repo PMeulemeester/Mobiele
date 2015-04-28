@@ -4,8 +4,12 @@
 app.controller('bookingsPanelController',['$scope','$window','$http',function($scope,$window,$http){
     $scope.naam = "Mobiele app - Bookings";
     //console.log('test');
-    $http.get('http://datatank.gent.be/Mobiliteitsbedrijf/Parkings11.json').success(function(response){
-        $scope.parkings=response.Parkings11.parkings;
-        console.log(response.Parkings11);
+    $http.get('../public/bookings').success(function(response){
+        var arr=$.map(response.bookings,function(el){return el;});
+        arr.sort(function(a,b){
+            return (a["reservation"] > b["reservation"]) ? 1 : ((a["reservation"] < b["reservation"]) ? -1 : 0);
+        });
+        $scope.bookings=arr;
     });
+
 }]);

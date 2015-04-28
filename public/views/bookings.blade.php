@@ -1,7 +1,12 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: pieterm
- * Date: 23/04/15
- * Time: 10:02
- */
+<div>
+    <table class="table table-striped">
+        <tr ng-repeat="booking in bookings">
+            <td>
+                {{booking.carpark}}
+            </td>
+            <td>
+                {{booking.reservation}}
+            </td>
+        </tr>
+    </table>
+</div>

@@ -63,14 +63,21 @@
         </div>
     </div>
 </div>
+
 <div ng-if="resparking">
-    <p>{{resparking.name}}</p>
+    <p>{{resparking.description}}</p>
+    <input type="text" class="form-control" placeholder="DateTime" id="bookdate"/>
+    <br>
+    <select class="form-control" id="booklicenseid">
+        <option ng-repeat="license in licenses" value="{{license.id}}">{{license.license}}</option>
+    </select>
+    <br>
     <div class="btn-group btn-group-justified" role="group">
         <div class="btn-group" role="group">
             <button type="button" class="btn btn-primary" ng-click="resetparking()">Back</button>
         </div>
         <div class="btn-group" role="group">
-            <button type="button" class="btn btn-success">Res</button>
+            <button type="button" class="btn btn-success" ng-click="bookspot()">Res</button>
         </div>
     </div>
 </div>
