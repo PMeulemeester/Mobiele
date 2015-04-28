@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Friendship;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -42,7 +43,8 @@ class FriendController extends Controller {
      * @param $friend_id
      */
     public function addFriend($user_id,$friend_id){
-    dd("add friend");
+        $user = User::find($user_id);
+        $user->friendshipsReceived()->attach($friend_id);
     }
 
     /**
@@ -52,7 +54,8 @@ class FriendController extends Controller {
      * @param $friend_id
      */
     public function deleteFriend($user_id,$friend_id){
-    dd("delete friend");
+        $user = User::find($user_id);
+        $user->friendshipsReceived()->detach($friend_id);
     }
 
 }
