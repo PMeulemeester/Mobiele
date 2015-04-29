@@ -60,7 +60,7 @@ class FriendController extends Controller {
     }
 
     /**
-     * vriendschap in een richting verwijderen: verzoek intrekken
+     * vriendschap in beide richting verwijderen: verzoek intrekken/weigeren
      * of vriendschap verbreken
      * @param $user_id
      * @param $friend_id
@@ -69,6 +69,8 @@ class FriendController extends Controller {
         $user_id = Auth::id();
         $user = User::find($user_id);
         $user->friendshipsSent()->detach($friend_id);
+
+        $friend = User::find($friend_id)->friendshipsSent()->detach($user_id);
     }
 
 }
