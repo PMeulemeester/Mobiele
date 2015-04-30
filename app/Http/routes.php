@@ -19,6 +19,7 @@ Route::get('home', 'HomeController@index');
  * friends
  */
 Route::get('friends',"FriendController@friends");
+Route::get('friends/search/{query}','FriendController@searchFriends');
 Route::get('friends/sent',"FriendController@friendRequestsSent");
 Route::get('friends/received',"FriendController@friendRequestsReceived");
 Route::put('friends/{friend_id}',"FriendController@addFriend");

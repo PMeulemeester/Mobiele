@@ -52,4 +52,14 @@ app.controller('friendsPanelController',['$scope','$window','$http',function($sc
 
         });
     }
+
+    $scope.searchFriends=function(){
+        var query = $scope.searchFriendsQuery;
+        $http.get('../public/friends/search/' + query).success(function(response){
+            $scope.newFriends = response;
+            console.log(response);
+        });
+    }
+
+
 }]);

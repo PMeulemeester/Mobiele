@@ -73,4 +73,11 @@ class FriendController extends Controller {
         $friend = User::find($friend_id)->friendshipsSent()->detach($user_id);
     }
 
+    public function searchFriends($query){
+        $user_id = Auth::id();
+        //return User::where('email',"LIKE","%bla%")->get();
+
+        return User::where('email', 'LIKE', "%" . $query . "%")->get();
+    }
+
 }

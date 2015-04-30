@@ -32,4 +32,5 @@
 	<script src="{{URL::asset('js/settingsPanelController.js')}}"></script>
 	<script src="{{URL::asset('js/angular-snap.min.js')}}"></script>
 	<script src="{{URL::asset('js/snap.min.js')}}"></script>
+    <script src="{{URL::asset('js/ui-bootstrap-tpls-0.12.1.min.js')}}"></script>
 @endsection
