@@ -60,9 +60,9 @@
                 Add friend <span class="glyphicon glyphicon-plus"></span>
             </accordion-heading>
             <div class="input-group">
-                <input type="text" class="form-control" id="searchFriends" placeholder="Search a friend to add..." ng-model="searchFriendsQuery">
+                <input type="text" class="form-control" id="searchFriends" placeholder="Search a friend to add..." ng-model="searchFriendsQuery" ng-model-options="{ getterSetter: true }">
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="searchFriends"><span class="glyphicon glyphicon-search"></span></button>
+                    <button type="button" class="btn btn-default" ng-click="searchFriends(searchFriendsQuery)"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
             </div>
             <table class="table table-striped">
