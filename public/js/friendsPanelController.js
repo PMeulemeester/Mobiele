@@ -5,6 +5,7 @@
 
 app.controller('friendsPanelController',['$scope','$window','$http',function($scope,$window,$http){
     $scope.naam = "Mobiele app - Friends";
+    $scope.noresults = "";
     //console.log('test');
 
     $scope.loadFriends = function(){
@@ -56,6 +57,11 @@ app.controller('friendsPanelController',['$scope','$window','$http',function($sc
     $scope.searchFriends=function(query){
         $http.get('../public/friends/search/' + query).success(function(response){
             $scope.newFriends = response;
+            if(response.length==0) {
+                $scope.noresults = "Geen resultaten gevonden, gelieve de zoekopdracht aan te passen";
+            }else{
+                $scope.noresults = "";
+            }
             console.log(response);
             $scope.loadFriends();
             $scope.loadReceived();

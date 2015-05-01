@@ -77,6 +77,7 @@
                     </td>
                 </tr>
             </table>
+            {{noresults}}
 
         </accordion-group>
     </accordion>
