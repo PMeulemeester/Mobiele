@@ -48,5 +48,20 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->belongsToMany('App\User','friends','friend_id','user_id');
     }
 
+    /**
+     * filtert de opgegeven $users zodat enkel nog die gebruikers overschieten
+     * waarnaar geen vriendschapsverzoeken zijn gestuurd door deze gebruiker
+     * @param $id
+     */
+    public function notFriendshipSentTo($users){
+        $friendshipsSent = $this->friendshipsSent;
+
+       foreach($users as $user){
+            if($friendshipsSent->contains($user)){
+                $users->forget($user->id);
+                dd($user);
+            }
+        }
+    }
 
 }

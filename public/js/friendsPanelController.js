@@ -40,6 +40,7 @@ app.controller('friendsPanelController',['$scope','$window','$http',function($sc
             $scope.loadFriends();
             $scope.loadReceived();
             $scope.loadSent();
+            $scope.newFriends = {};
         });
     }
     $scope.removeFriend=function(friend){
@@ -49,7 +50,6 @@ app.controller('friendsPanelController',['$scope','$window','$http',function($sc
             $scope.loadFriends();
             $scope.loadReceived();
             $scope.loadSent();
-
         });
     }
 
@@ -57,6 +57,9 @@ app.controller('friendsPanelController',['$scope','$window','$http',function($sc
         $http.get('../public/friends/search/' + query).success(function(response){
             $scope.newFriends = response;
             console.log(response);
+            $scope.loadFriends();
+            $scope.loadReceived();
+            $scope.loadSent();
         });
     }
 

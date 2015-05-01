@@ -3,7 +3,7 @@
     <accordion close-others="oneAtATime">
         <accordion-group heading="" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
             <accordion-heading>
-                Friends <span class="badge">0</span>
+                Friends <span class="badge">{{friends.length}}</span>
             </accordion-heading>
             <table class="table table-striped">
                 <tr ng-repeat="friend in friends">
@@ -20,7 +20,7 @@
         </accordion-group>
         <accordion-group>
             <accordion-heading>
-                Accept friend requests <span class="badge">0</span>
+                Accept friend requests <span class="badge">{{received.length}}</span>
             </accordion-heading>
             <table class="table table-striped">
                 <tr ng-repeat="request in received">
@@ -40,7 +40,7 @@
         </accordion-group>
         <accordion-group >
             <accordion-heading>
-                Waiting for acceptance <span class="badge">0</span>
+                Waiting for acceptance <span class="badge">{{sent.length}}</span>
             </accordion-heading>
             <table class="table table-striped">
                 <tr ng-repeat="request in sent">
@@ -72,7 +72,7 @@
                     </td>
                     <td>
                         <button class="btn btn-success" type="button" ng-click="addFriend(friend)" data-toggle="tooltip" data-placement="left" title="Vrienschapsverzoek zenden">
-                            <span class="glyphicon glyphicon-ok"></span>
+                            <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </td>
                 </tr>

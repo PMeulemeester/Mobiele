@@ -76,8 +76,12 @@ class FriendController extends Controller {
     public function searchFriends($query){
         $user_id = Auth::id();
         //return User::where('email',"LIKE","%bla%")->get();
+        $friends = User::where('email', 'LIKE', "%" . $query . "%")
+            ->whereNotIn('id',[$user_id])->get();
+        Auth::user()->notFriendshipSentTo($friends);
 
-        return User::where('email', 'LIKE', "%" . $query . "%")->get();
+        $friends = $friends->slice(0,10);
+        return $friends;
     }
 
 }
