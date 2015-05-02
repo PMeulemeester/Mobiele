@@ -33,18 +33,12 @@ app.controller('friendsPanelController',['$scope','$window','$http',function($sc
     $scope.loadFriends();
     $scope.loadReceived();
     $scope.loadSent();
-
-    $scope.addFriend=function(friend){
+/*
+    $scope.addFriend=function(friend, callback){
       //  window.alert("add " + friend.id);
-        var id = friend.id;
-        $http.get('../public/friends/add/' + id).success(function(response){
-            $scope.loadFriends();
-            $scope.loadReceived();
-            $scope.loadSent();
-            $scope.newFriends = {};
-        });
-    }
-    $scope.removeFriend=function(friend){
+
+    }*/
+   /* $scope.removeFriend=function(friend){
       //  window.alert("delete " + friend.id);
         var id = friend.id;
         $http.get('../public/friends/del/' + id).success(function(response){
@@ -53,7 +47,7 @@ app.controller('friendsPanelController',['$scope','$window','$http',function($sc
             $scope.loadSent();
         });
     }
-
+*/
     $scope.searchFriends=function(query){
         $http.get('../public/friends/search/' + query).success(function(response){
             $scope.newFriends = response;
@@ -66,6 +60,41 @@ app.controller('friendsPanelController',['$scope','$window','$http',function($sc
             $scope.loadFriends();
             $scope.loadReceived();
             $scope.loadSent();
+        });
+    }
+
+    $scope.acceptRequest = function(friend,index){
+        var id = friend.id;
+        $http.get('../public/friends/add/' + id).success(function(response){
+            $scope.received.splice(index,1);
+            $scope.friends.push(friend);
+        });
+    }
+    $scope.sendRequest = function(friend,index){
+        var id = friend.id;
+        $http.get('../public/friends/add/' + id).success(function(response){
+            $scope.newFriends.splice(index,1);
+            $scope.sent.push(friend);
+        });
+    }
+
+
+    $scope.removeFriend = function(friend,index){
+        var id = friend.id;
+        $http.get('../public/friends/del/' + id).success(function(response){
+            $scope.friends.splice(index,1);
+        });
+    }
+    $scope.denyRequest = function(friend,index){
+        var id = friend.id;
+        $http.get('../public/friends/del/' + id).success(function(response){
+            $scope.received.splice(index,1);
+        });
+    }
+    $scope.cancelRequest = function(friend,index){
+        var id = friend.id;
+        $http.get('../public/friends/del/' + id).success(function(response){
+            $scope.sent.splice(index,1);
         });
     }
 

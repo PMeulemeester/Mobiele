@@ -11,7 +11,7 @@
                         {{friend.email}}
                     </td>
                     <td>
-                        <button class="btn btn-danger" type="button" ng-click="removeFriend(friend)" data-toggle="tooltip" data-placement="left" title="Vriend verwijderen">
+                        <button class="btn btn-danger" type="button" ng-click="removeFriend(friend,$index)" data-toggle="tooltip" data-placement="left" title="Vriend verwijderen">
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
                     </td>
@@ -28,10 +28,10 @@
                         {{request.email}}
                     </td>
                     <td>
-                        <button class="btn btn-success" type="button" ng-click="addFriend(request)" data-toggle="tooltip" data-placement="left" title="Vriendschapsverzoek aanvaarden">
+                        <button class="btn btn-success" type="button" ng-click="acceptRequest(request,$index)" data-toggle="tooltip" data-placement="left" title="Vriendschapsverzoek aanvaarden">
                             <span class="glyphicon glyphicon-ok"></span>
                         </button>
-                        <button class="btn btn-danger" type="button" ng-click="removeFriend(request)" data-toggle="tooltip" data-placement="left" title="Vriendschapsverzoek weigeren">
+                        <button class="btn btn-danger" type="button" ng-click="denyRequest(request,$index)" data-toggle="tooltip" data-placement="left" title="Vriendschapsverzoek weigeren">
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
                     </td>
@@ -48,7 +48,7 @@
                         {{request.email}}
                     </td>
                     <td>
-                        <button class="btn btn-danger" type="button" ng-click="removeFriend(request)" data-toggle="tooltip" data-placement="left" title="Verzoek ongedaan maken">
+                        <button class="btn btn-danger" type="button" ng-click="cancelRequest(request,$index)" data-toggle="tooltip" data-placement="left" title="Verzoek ongedaan maken">
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
                     </td>
@@ -71,7 +71,7 @@
                         {{friend.email}}
                     </td>
                     <td>
-                        <button class="btn btn-success" type="button" ng-click="addFriend(friend)" data-toggle="tooltip" data-placement="left" title="Vrienschapsverzoek zenden">
+                        <button class="btn btn-success" type="button" ng-click="sendRequest(friend,$index)" data-toggle="tooltip" data-placement="left" title="Vrienschapsverzoek zenden">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </td>
